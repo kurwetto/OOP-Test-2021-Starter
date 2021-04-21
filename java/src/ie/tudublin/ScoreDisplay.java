@@ -13,7 +13,7 @@ public class ScoreDisplay extends PApplet
 
 	//String score = "D2E2F2G2A2B2c2d2";
 	//String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
-	
+
 	public void settings() {
 		size(1000, 500);
 
@@ -21,7 +21,6 @@ public class ScoreDisplay extends PApplet
 		char c = '7'; // c holds the character 7 (55)
 		int i = c - '0'; // i holds the number 7 (55 - 48)
 		println(i);
-
 	}
 
 	public void setup() {
@@ -53,7 +52,7 @@ public class ScoreDisplay extends PApplet
 			println(note.getNote() + "\t" + note.getDuration() + "\t" + (note.getDuration() == 1 ? "Quaver" : "Crotchet"));
 		}
 	}
-
+	
 	public void draw() {
 		float NUM = 0.05f * width;
 		background(255, 255, 255);
@@ -67,8 +66,6 @@ public class ScoreDisplay extends PApplet
 
 		}
 
-
-
 		//drawing notes
 		int line_x = 75; // co-ordinates
 		int	line_y = 383;
@@ -77,24 +74,16 @@ public class ScoreDisplay extends PApplet
 		int ellipse_x = 68;
 		int ellipse_y = 380;
 
-		PFont f;
+		PFont f; // writing the scores
 		f = createFont("Arial",16,true);
 		textFont(f,36);
 
-
-		for (int i = 0; i < score.length(); i++) {
-
-
-		}
-
-		line_x = 75;
-		line_y = 383;
 		int line_x3 = 75;
 		int line_x2 = 50;
 		int line_y3 = 315;
 		int line_y4 = 340;
 
-		for (int i = 0; i < score.length(); i++) {
+		for (int i = 0; i < score.length(); i++) { // highlighting in red
 
 			if(mouseX > line_x - 50 && mouseX < line_x + 50) {
 				fill(255,0,0);
@@ -106,16 +95,15 @@ public class ScoreDisplay extends PApplet
 			}
 			if(score.charAt(i) == '2'){
 
-				line(line_x2, line_y3, line_x3, line_y4);
+				line(line_x2, line_y3, line_x3, line_y4); // draw crochet
 			}
 			else{
-				text(score.charAt(i),line_x,100);
+				text(score.charAt(i),line_x,100); // no crochet keep as it is
 				line(line_x, line_y, line_x, line_y2);
-
 				ellipse(ellipse_x, ellipse_y, 25, 25);
+
 				line_x += 100; // increments
 				ellipse_x += 100;
-
 				line_y -= 24;
 				line_y2 -= 24;
 				ellipse_y -= 24;
@@ -125,8 +113,6 @@ public class ScoreDisplay extends PApplet
 				line_y4 -=24;
 			}
 
-
 		}
-
 	}
 }
