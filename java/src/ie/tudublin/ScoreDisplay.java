@@ -7,29 +7,14 @@ import processing.core.PFont;
 
 public class ScoreDisplay extends PApplet
 {
-	String score = "DEFGABcd";
+	//String score = "DEFGABcd";
 	ArrayList<Note> notes;
 	float NUM = 5;
 
-	//String score = "D2E2F2G2A2B2c2d2";
+	String score = "D2E2F2G2A2B2c2d2";
 	//String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 
-	public void function() {
-		int i = 0;
 
-		while (i < score.length() - 1)
-		{
-			if(Character.isDigit(score.charAt(i + 1)))
-			{
-				println("test");
-				i+=2;
-			}
-			else
-			{
-				i++;
-			}
-		}
-	}
 
 	public void settings() {
 		size(1000, 500);
@@ -39,7 +24,6 @@ public class ScoreDisplay extends PApplet
 		int i = c - '0'; // i holds the number 7 (55 - 48)
 		println(i);
 
-		function();
 	}
 
 	public void setup() {
@@ -80,13 +64,16 @@ public class ScoreDisplay extends PApplet
 		for (int i = 0; i < 5; i++) {
 			float y = map(i, -4, 6, NUM, height - NUM);
 			strokeWeight(2.5f);
+			stroke(0,0,0);
 			line(NUM, y, width - NUM, y);
 
 		}
 
+
+
 		//drawing notes
 		int line_x = 75; // co-ordinates
-		int line_y = 383;
+		int	line_y = 383;
 		int line_y2 = 290;
 
 		int ellipse_x = 68;
@@ -95,12 +82,29 @@ public class ScoreDisplay extends PApplet
 		PFont f;
 		f = createFont("Arial",16,true);
 		textFont(f,36);
-		fill(0,0,0);
+
 
 		for (int i = 0; i < score.length(); i++) {
+
+
+		}
+
+		line_x = 75;
+		line_y = 383;
+		score = score.replaceAll("\\d","");
+		for (int i = 0; i < score.length(); i++) {
+
+			if(mouseX > line_x - 50 && mouseX < line_x + 50) {
+				fill(255,0,0);
+				stroke(255,0,0);
+			}
+			else{
+				fill(0,0,0);
+				stroke(0,0,0);
+			}
 			text(score.charAt(i),line_x,100);
 			line(line_x, line_y, line_x, line_y2);
-			fill(0,0,0);
+
 			ellipse(ellipse_x, ellipse_y, 25, 25);
 
 			line_x += 100; // increments
@@ -109,7 +113,6 @@ public class ScoreDisplay extends PApplet
 			line_y -= 24;
 			line_y2 -= 24;
 			ellipse_y -= 24;
-
 		}
 
 	}
