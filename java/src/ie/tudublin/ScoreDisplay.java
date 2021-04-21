@@ -2,8 +2,8 @@ package ie.tudublin;
 
 import java.util.ArrayList;
 
-
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class ScoreDisplay extends PApplet
 {
@@ -49,7 +49,6 @@ public class ScoreDisplay extends PApplet
 	}
 
 	void loadNotes() {
-
 		for (int i = 0; i < score.length(); i++) {
 			char currentNote = score.charAt(i);
 			int currentDuration = 1;
@@ -86,23 +85,32 @@ public class ScoreDisplay extends PApplet
 		}
 
 		//drawing notes
-		int line_x = 75;
+		int line_x = 75; // co-ordinates
 		int line_y = 383;
 		int line_y2 = 290;
 
 		int ellipse_x = 68;
 		int ellipse_y = 380;
 
-		for (int i = 0; i < 8; i++) {
+		PFont f;
+		f = createFont("Arial",16,true);
+		textFont(f,36);
+		fill(0,0,0);
 
+		for (int i = 0; i < score.length(); i++) {
+			text(score.charAt(i),line_x,100);
 			line(line_x, line_y, line_x, line_y2);
-			ellipse(ellipse_x, ellipse_y, 20, 20);
-			line_x += 100;
+			fill(0,0,0);
+			ellipse(ellipse_x, ellipse_y, 25, 25);
+
+			line_x += 100; // increments
 			ellipse_x += 100;
 
 			line_y -= 24;
 			line_y2 -= 24;
 			ellipse_y -= 24;
+
 		}
+
 	}
 }
