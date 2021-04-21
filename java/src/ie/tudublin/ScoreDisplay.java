@@ -7,15 +7,13 @@ import processing.core.PFont;
 
 public class ScoreDisplay extends PApplet
 {
-	//String score = "DEFGABcd";
+	String score = "DEFGABcd";
 	ArrayList<Note> notes;
 	float NUM = 5;
 
-	String score = "D2E2F2G2A2B2c2d2";
+	//String score = "D2E2F2G2A2B2c2d2";
 	//String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
-
-
-
+	
 	public void settings() {
 		size(1000, 500);
 
@@ -91,7 +89,11 @@ public class ScoreDisplay extends PApplet
 
 		line_x = 75;
 		line_y = 383;
-		score = score.replaceAll("\\d","");
+		int line_x3 = 75;
+		int line_x2 = 50;
+		int line_y3 = 315;
+		int line_y4 = 340;
+
 		for (int i = 0; i < score.length(); i++) {
 
 			if(mouseX > line_x - 50 && mouseX < line_x + 50) {
@@ -102,17 +104,28 @@ public class ScoreDisplay extends PApplet
 				fill(0,0,0);
 				stroke(0,0,0);
 			}
-			text(score.charAt(i),line_x,100);
-			line(line_x, line_y, line_x, line_y2);
+			if(score.charAt(i) == '2'){
 
-			ellipse(ellipse_x, ellipse_y, 25, 25);
+				line(line_x2, line_y3, line_x3, line_y4);
+			}
+			else{
+				text(score.charAt(i),line_x,100);
+				line(line_x, line_y, line_x, line_y2);
 
-			line_x += 100; // increments
-			ellipse_x += 100;
+				ellipse(ellipse_x, ellipse_y, 25, 25);
+				line_x += 100; // increments
+				ellipse_x += 100;
 
-			line_y -= 24;
-			line_y2 -= 24;
-			ellipse_y -= 24;
+				line_y -= 24;
+				line_y2 -= 24;
+				ellipse_y -= 24;
+				line_y3 -= 24;
+				line_x2 += 24;
+				line_x3 +=24;
+				line_y4 -=24;
+			}
+
+
 		}
 
 	}
